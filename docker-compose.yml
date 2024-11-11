@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: meu-postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: minha_db 
+    ports:
+      - "5433:5432"  # Porta 5433 no host para acessar o PostgreSQL
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local  # Definindo o driver como local para persistência de dados no localhost
