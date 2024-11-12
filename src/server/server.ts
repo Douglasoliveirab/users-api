@@ -36,6 +36,10 @@ fastify.register(fastifySwagger, {
         name: "Default",
         description: "Default endpoints",
       },
+      {
+        name: "Users",
+        description: "Endpoint de usuarios",
+      },
     ],
   },
 });
@@ -43,7 +47,7 @@ fastify.register(fastifySwagger, {
 fastify.register(fastifySwaggerUi, {
   routePrefix: "/docs",
   uiConfig: {
-    docExpansion: "full",
+    docExpansion: "none",
     deepLinking: false,
   },
 });
@@ -65,6 +69,7 @@ async function start() {
     // Gerar a documentação Swagger
     fastify.swagger();
     console.log(`Servidor rodando na porta ${port}`);
+
   } catch (err) {
     // Se houver erro na conexão com o banco de dados ou ao iniciar o servidor, ele será capturado aqui
     fastify.log.error(err);
